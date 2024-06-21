@@ -41,7 +41,7 @@ const Register = (props) => {
   return (
     <div className="bg-gray-200 h-screen flex flex-col justify-center gap-8 items-center">
       <p className=" select-none font-bungee text-2xl md:text-4xl font-semibold text-blue-900 ">
-        Signup to c-upp
+        Signup on c-up
       </p>
 
       {/* creating user */}

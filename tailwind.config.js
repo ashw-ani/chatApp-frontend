@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         bungee: ["Bungee", "cursive"],
       },
+      colors: {
+        navBar: " rgb(23 37 84);",
+      },
     },
   },
   plugins: [

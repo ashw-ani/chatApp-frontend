@@ -11,7 +11,7 @@ module.exports = {
         bungee: ["Bungee", "cursive"],
       },
       colors: {
-        navBar: " rgb(23 37 84);",
+        navBar: " rgb(2 6 23);",
       },
     },
   },

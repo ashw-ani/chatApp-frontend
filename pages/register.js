@@ -1,11 +1,23 @@
 import { useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import authContext from "@/context/authContext";
+import { useContext } from "react";
 
 const Register = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [creatingUser, setCreatingUser] = useState(false);
+  const router = useRouter();
+  const { isLoggedIn, userData } = useContext(authContext);
+
+  useEffect(() => {
+    if (isLoggedIn && userData) {
+      router.push(`/user/${userData.username}`);
+    }
+  }, [isLoggedIn, userData, router]);
 
   const signupHandler = async (event) => {
     setCreatingUser(true);
@@ -32,6 +44,7 @@ const Register = (props) => {
 
       setTimeout(() => {
         setSuccessMessage("");
+        router.push("/login");
       }, 2000);
     } catch (error) {
       console.error("Error signing up:", error.message);

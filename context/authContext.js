@@ -5,7 +5,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
-  const [sidebarStatus, setSidebarStatus] = useState(null);
+  const [sidebarStatus, setSidebarStatus] = useState(true);
+  const [selectedContact, setSelectedContact] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -45,6 +46,8 @@ export const AuthProvider = ({ children }) => {
         setUserData,
         sidebarStatus,
         setSidebarStatus,
+        selectedContact,
+        setSelectedContact,
       }}
     >
       {children}

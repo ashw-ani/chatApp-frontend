@@ -33,7 +33,7 @@ const MainNavigation = (props) => {
                 setIsLoggedIn(false);
                 setUserData(null);
               }}
-              className={` select-none font-bungee text-xs md:text-lg font-semibold text-gray-200`}
+              className={` select-none font-bungee text-xs md:text-lg font-semibold text-gray-200 `}
             >
               log out
             </p>

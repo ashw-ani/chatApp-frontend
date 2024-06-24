@@ -3,17 +3,21 @@ import AuthContext from "@/context/authContext";
 import { useMediaQuery } from "react-responsive";
 import { useDrag } from "@use-gesture/react";
 import { IoMdSend } from "react-icons/io";
+import Avatar from "./avatar";
+import Contact from "./contact";
+import OpenContacts from "./OpenContacts";
 
 const Chat = () => {
   const [isClient, setIsClient] = useState(false);
   const [onlinePeople, setOnlinePeople] = useState({});
   const [webSocket, setWebSocket] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
 
   const isPhone = useMediaQuery({
     query: "(max-width:767px)",
   });
 
-  const { sidebarStatus, setSidebarStatus } = useContext(AuthContext);
+  const { sidebarStatus, setSidebarStatus, userData } = useContext(AuthContext);
   useEffect(() => {
     setIsClient(true);
 
@@ -37,7 +41,6 @@ const Chat = () => {
     peopleArray.forEach(({ userId, username }) => {
       people[userId] = username;
     });
-    console.log(people);
     setOnlinePeople(people);
   };
   const handleMessage = (event) => {
@@ -63,17 +66,40 @@ const Chat = () => {
     return null;
   } else {
     if (isPhone) {
+      //
+      //
+      //
+      //   mobile devices
+      //
+      //
+      //
       return (
         <div {...bind()} className={`flex h-screen pt-16 md:pt-20`}>
           {/* chats */}
+
+          {!sidebarStatus && <OpenContacts />}
+
           <div
             className={` ${
               !sidebarStatus && "hidden"
-            }  bg-slate-900 h-screen absolute z-10 w-3/4 pt-16 md:pt-20`}
+            }  bg-slate-900 h-screen absolute z-10 w-3/4  p-2 flex flex-col gap-2`}
           >
-            {Object.keys(onlinePeople).map((userId) => (
-              <div>{userId}</div>
-            ))}
+            <div className="w-full  text-white p-2 text-center text-lg font-bungee">
+              Chats
+            </div>
+
+            {userData &&
+              Object.keys(onlinePeople).map((userId) =>
+                userId === userData._id ? (
+                  ""
+                ) : (
+                  <Contact
+                    key={userId}
+                    userId={userId}
+                    onlinePeople={onlinePeople}
+                  />
+                )
+              )}
           </div>
           <div
             className="flex flex-col bg-blue-100 w-screen "
@@ -96,13 +122,33 @@ const Chat = () => {
         </div>
       );
     } else {
+      //
+      //
+      //
+      // for bigger devices
+      //
+      //
+      //
       return (
         <div className={`flex h-screen pt-16 md:pt-20`}>
           {/* chats */}
-          <div className={`bg-slate-900 w-1/4 pt-16 md:pt-20`}>
-            {Object.keys(onlinePeople).map((userId) => (
-              <div>{onlinePeople[userId]}</div>
-            ))}
+          <div className={`bg-slate-900 w-1/4 p-2 flex flex-col gap-2 `}>
+            <div className="w-full  text-white p-2 text-center text-lg font-bungee">
+              Chats
+            </div>
+            {/* individual people  */}
+            {userData &&
+              Object.keys(onlinePeople).map((userId) =>
+                userId === userData._id ? (
+                  ""
+                ) : (
+                  <Contact
+                    key={userId}
+                    userId={userId}
+                    onlinePeople={onlinePeople}
+                  />
+                )
+              )}
           </div>
           <div
             className="flex flex-col bg-blue-100 w-screen md:w-3/4"

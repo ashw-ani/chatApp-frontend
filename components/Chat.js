@@ -25,7 +25,7 @@ const Chat = () => {
     selectedContact,
     setSelectedContact,
   } = useContext(AuthContext);
-
+  //
   useEffect(() => {
     setIsClient(true);
     setSelectedContact(null);

@@ -33,7 +33,9 @@ const Chat = () => {
   }, []);
   const connectToWebSocket = () => {
     const token = localStorage.getItem("jwtToken");
-    const webSocket = new WebSocket(`ws://192.168.0.117:8080?token=${token}`);
+    const webSocket = new WebSocket(
+      `${process.env.NEXT_PUBLIC_CHAT_APP_BACKEND_WSS}?token=${token}`
+    );
     setWebSocket(webSocket);
     webSocket.addEventListener("message", handleMessage);
     webSocket.addEventListener("close", () => {

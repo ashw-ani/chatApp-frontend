@@ -4,6 +4,7 @@ import authContext from "@/context/authContext";
 import { useEffect } from "react";
 
 const Login = (props) => {
+  const apiRoute = process.env.NEXT_PUBLIC_CHAT_APP_BACKEND;
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +22,7 @@ const Login = (props) => {
     const formData = { username, password };
 
     try {
-      const response = await fetch("http://192.168.0.117:8080/auth/login", {
+      const response = await fetch(`${apiRoute}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

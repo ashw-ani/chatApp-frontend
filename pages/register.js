@@ -6,6 +6,7 @@ import authContext from "@/context/authContext";
 import { useContext } from "react";
 
 const Register = (props) => {
+  const apiRoute = process.env.NEXT_PUBLIC_CHAT_APP_BACKEND;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -24,7 +25,7 @@ const Register = (props) => {
     event.preventDefault();
     const formData = { username, password };
     try {
-      const response = await fetch("http://192.168.0.117:8080/auth/signup", {
+      const response = await fetch(`${apiRoute}/auth/signup`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "@/context/authContext";
 import Chat from "@/components/Chat";
 
-const userDash = (props) => {
+const UserDash = (props) => {
   const router = useRouter();
+  const apiRoute = process.env.NEXT_PUBLIC_CHAT_APP_BACKEND;
 
   const username = router.query.username;
   const { isLoggedIn, setIsLoggedIn, userData, setUserData } =
@@ -22,7 +23,7 @@ const userDash = (props) => {
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://192.168.0.117:8080/user/getUser", {
+        const response = await fetch(`${apiRoute}/user/getUser`, {
           headers: {
             authorization: `bearer ${token}`,
           },
@@ -66,4 +67,4 @@ const userDash = (props) => {
     </div>
   );
 };
-export default userDash;
+export default UserDash;

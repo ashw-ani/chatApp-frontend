@@ -7,6 +7,7 @@ import OpenContacts from "./OpenContacts";
 import { uniqBy } from "lodash";
 
 const Chat = () => {
+  const apiRoute = process.env.NEXT_PUBLIC_CHAT_APP_BACKEND;
   const [isClient, setIsClient] = useState(false);
   const [onlinePeople, setOnlinePeople] = useState({});
   const [webSocket, setWebSocket] = useState(null);
@@ -95,7 +96,7 @@ const Chat = () => {
     const fetchOldMessages = async (recipient) => {
       try {
         const response = await fetch(
-          `http://192.168.0.117:8080/messages/getMessages?recipient=${recipient}`,
+          `${apiRoute}/messages/getMessages?recipient=${recipient}`,
           {
             method: "GET",
             headers: {

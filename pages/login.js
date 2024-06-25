@@ -70,7 +70,7 @@ const Login = (props) => {
           autoComplete="username"
           value={username}
           onChange={(event) => {
-            setUsername(event.target.value);
+            setUsername(event.target.value.trim());
           }}
         ></input>
         <input
@@ -81,7 +81,7 @@ const Login = (props) => {
           className="block w-full rounded-sm p-2 mb-2"
           value={password}
           onChange={(event) => {
-            setPassword(event.target.value);
+            setPassword(event.target.value.trim());
           }}
         ></input>
         <button

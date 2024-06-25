@@ -68,7 +68,7 @@ const Register = (props) => {
           minLength={3}
           value={username}
           onChange={(event) => {
-            setUsername(event.target.value);
+            setUsername(event.target.value.trim());
           }}
           type="text"
           placeholder="username"
@@ -79,7 +79,7 @@ const Register = (props) => {
           required
           minLength={8}
           onChange={(event) => {
-            setPassword(event.target.value);
+            setPassword(event.target.value.trim());
           }}
           type="password"
           placeholder="password"

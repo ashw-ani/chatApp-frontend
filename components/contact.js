@@ -18,6 +18,7 @@ const Contact = (props) => {
       } w-full cursor-pointer  text-white p-1.5  flex flex-row gap-2 items-center`}
     >
       <Avatar
+        online={props.online}
         username={props.onlinePeople[props.userId]}
         userId={props.userId}
       />

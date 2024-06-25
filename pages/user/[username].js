@@ -38,7 +38,7 @@ const userDash = (props) => {
         // }
         setUserData(data.user);
       } catch (error) {
-        console.error("error etching user data", error);
+        console.error("error fetching user data", error);
       }
     };
     fetchUserData();

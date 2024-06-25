@@ -110,7 +110,9 @@ const Avatar = (props) => {
     <div
       className={`w-9 h-9 ${
         colors[userIdBase10 % colors.length]
-      }  rounded-full flex items-center  text-xl`}
+      }  rounded-full flex items-center  text-xl
+      
+      ${props.online && "border-2  border-green-500"}`}
     >
       <div className="w-full opacity-70 text-center ">
         {props.username && props.username[0]}

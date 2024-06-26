@@ -11,10 +11,11 @@ const HomePage = (props) => {
           </div>
         </div>
         <div className="text-white text-md md:text-xl font-black w-full  px-3">
-          We're excited to have you here! <br></br>Connect with friends, family,
-          and colleagues effortlessly.<br></br> Dive into conversations, share
-          moments, and make memories. <br></br>If you have any questions or need
-          help, don't hesitate to reach out.<br></br> Happy chatting!<br></br>
+          We are excited to have you here! <br></br>Connect with friends,
+          family, and colleagues effortlessly.<br></br> Dive into conversations,
+          share moments, and make memories. <br></br>If you have any questions
+          or need help, do not hesitate to reach out.<br></br> Happy chatting!
+          <br></br>
           <br></br> This is a MERN full-stack messaging application that allows
           users to interact with one another.<br></br> Your conversations are
           secure and readable by no one other that you and your buddies.

@@ -10,6 +10,7 @@ const Register = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [creatingUser, setCreatingUser] = useState(false);
   const router = useRouter();
   const { isLoggedIn, userData } = useContext(authContext);
@@ -21,7 +22,6 @@ const Register = (props) => {
   }, [isLoggedIn, userData, router]);
 
   const signupHandler = async (event) => {
-    setCreatingUser(true);
     event.preventDefault();
     const formData = { username, password };
     try {
@@ -32,12 +32,11 @@ const Register = (props) => {
         },
         body: JSON.stringify(formData),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to signup");
-      }
-      setCreatingUser(false);
       const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to signup");
+      }
+      setCreatingUser(true);
 
       setSuccessMessage(data.message);
       setPassword("");
@@ -48,7 +47,11 @@ const Register = (props) => {
         router.push("/login");
       }, 2000);
     } catch (error) {
-      console.error("Error signing up:", error.message);
+      setErrorMessage(error.message);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+      // console.error("Error signing up:", error.message);
     }
   };
 
@@ -92,6 +95,11 @@ const Register = (props) => {
         >
           Register
         </button>
+        {errorMessage && (
+          <p className="text-red-500 text-lg font-bungee text-center pt-2 font-extralight">
+            {errorMessage}
+          </p>
+        )}
       </form>
     </div>
   );

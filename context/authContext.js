@@ -7,20 +7,18 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [sidebarStatus, setSidebarStatus] = useState(true);
   const [selectedContact, setSelectedContact] = useState(true);
+  const apiRoute = process.env.NEXT_PUBLIC_CHAT_APP_BACKEND;
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
       const fetchUserData = async () => {
         try {
-          const response = await fetch(
-            "http://192.168.0.117:8080/user/getUser",
-            {
-              headers: {
-                authorization: `bearer ${token}`,
-              },
-            }
-          );
+          const response = await fetch(`${apiRoute}/user/getUser`, {
+            headers: {
+              authorization: `bearer ${token}`,
+            },
+          });
           if (!response.ok) {
             throw new Error("Failed to fetch user data");
           }
@@ -30,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
           console.error("Error fetching user data", error);
           setIsLoggedIn(false);
-          setUserData(null);
         }
       };
       fetchUserData();

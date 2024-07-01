@@ -163,7 +163,7 @@ const Chat = () => {
               )}
           </div>
           <div
-            className="flex flex-col bg-blue-100 w-screen  "
+            className="flex flex-col bg-blue-100 w-screen bg-[url('../public/images/chatBgSmall.png')] bg-contain  overflow-hidden fixed h-full"
             onClick={() => setSidebarStatus(false)}
           >
             {/* conversation */}
@@ -174,9 +174,10 @@ const Chat = () => {
                     <div key={message._id}>
                       <div
                         className={`inline-block ${
-                          userData._id && message.sender === userData._id
+                          userData &&
+                          (message.sender === userData._id
                             ? "bg-blue-500 text-white float-right"
-                            : "bg-white text-black float-left"
+                            : "bg-white text-black float-left")
                         }  p-2  m-2 rounded-lg max-w-72 whitespace-pre-wrap break-words`}
                       >
                         {message.text}
@@ -251,13 +252,13 @@ const Chat = () => {
               )}
           </div>
           <div
-            className="flex flex-col bg-blue-100 w-screen md:w-3/4 "
+            className="flex flex-col bg-blue-100 w-screen md:w-3/4  bg-[url('../public/images/chatBgLarge.png')] bg-cover  "
             onClick={() => setSidebarStatus((prev) => !prev)}
           >
             {/* conversation */}
             <div className="flex-grow items-center h-full  ">
               {selectedContact ? (
-                <div className="  w-3/4 h-full flex flex-grow flex-col no-scrollbar justify-start fixed overflow-y-scroll pb-40">
+                <div className="  w-3/4 h-full flex flex-grow flex-col no-scrollbar justify-start fixed overflow-y-scroll pb-40 ">
                   {filteredMessages.map((message) => (
                     <div key={message._id}>
                       <div
